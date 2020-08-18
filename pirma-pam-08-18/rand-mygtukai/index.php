@@ -29,6 +29,11 @@
 </style>
 
 <body>
+<?php
+if ('bg-' . (rand(1, 5)) != 'bg-' . (rand(1, 5))) {
+    print '<button class="bg-'(rand(1, 5)) . '>BTN</button>';
+}; 
+?>
     <button class="bg-<?php print (rand(1, 5)); ?>">BTN1</button>
     <button class="bg-<?php print (rand(1, 5)); ?>">BTN2</button>
     <button class="bg-<?php print (rand(1, 5)); ?>">BTN3</button>
