@@ -346,4 +346,36 @@ $bowling2 = [
 ];
 var_dump($bowling2);
 
+//dar nuimt reik direction ir i viena sumest
+$track = [
+    [
+        'turn_direction' => 'right',
+        'turn_degree' => 90,
+    ],
+    [
+        'turn_direction' => 'left',
+        'turn_degree' => -30,
+    ],
+    [
+        'turn_direction' => 'right',        
+        'turn_degree' => 40,
+    ],
+    [
+        'turn_direction' => 'left',       
+        'turn_degree' => 160,
+    ],
+    [
+        'turn_direction' => 'right',      
+        'turn_degree' => -70,
+    ],
+    [
+        'turn_direction' => 'right', 
+        'turn_degree' => 180,
+    ],
+    [
+        'turn_direction' => 'right', 
+        'turn_degree' => 15,
+    ],
+];
 
+var_dump($track);
