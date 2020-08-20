@@ -141,60 +141,60 @@ var_dump($players);
 
 "<br><br><br>";
 //neteisingai
-$produktai_lentynoje = [
-    'lentynos' => 
-        1 => 
-            [
-            'gyvuniniai' => 
-                 [
-                     'pavadinimas' => 'kiausai',
-                     'kiekis' => 3,
-                 ],
-                 [
-                    'pavadinimas' => 'zuvis',
-                    'kiekis' => 0,
-                ],
-            ],
-            [ 
-            'pieno_produktai' => 
-                [
-                    'pavadinimas' => 'grietine',
-                    'kiekis' => 1,
-                ],
-                [
-                    'pavadinimas' => 'jogurtas',
-                    'kiekis' => 2,
-                ], 
-            ],           
-        2 => 
-            [
-            'pieno_produktai' => 
-                [
-                    'pavadinimas' => 'pienas',
-                    'kiekis' => 1,
-                ],
-                [
-                    'pavadinimas' => 'kefyras',
-                    'kiekis' => 0,
-                ],
-            ],
-            [
-            'padazai' =>
-                 [
-                'pavadinimas' => 'kecupas',
-                 'kiekis' => 2,
-                 ],
-            ],
-            [
-            'alko' =>
-                [
-                 'pavadinimas' => 'degtine',
-                'kiekis' => 2,
-                ],
-            ],
-];
+// $produktai_lentynoje = [
+//     'lentynos' => 
+//         1 => 
+//             [
+//             'gyvuniniai' => 
+//                  [
+//                      'pavadinimas' => 'kiausai',
+//                      'kiekis' => 3,
+//                  ],
+//                  [
+//                     'pavadinimas' => 'zuvis',
+//                     'kiekis' => 0,
+//                 ],
+//             ],
+//             [ 
+//             'pieno_produktai' => 
+//                 [
+//                     'pavadinimas' => 'grietine',
+//                     'kiekis' => 1,
+//                 ],
+//                 [
+//                     'pavadinimas' => 'jogurtas',
+//                     'kiekis' => 2,
+//                 ], 
+//             ],           
+//         2 => 
+//             [
+//             'pieno_produktai' => 
+//                 [
+//                     'pavadinimas' => 'pienas',
+//                     'kiekis' => 1,
+//                 ],
+//                 [
+//                     'pavadinimas' => 'kefyras',
+//                     'kiekis' => 0,
+//                 ],
+//             ],
+//             [
+//             'padazai' =>
+//                  [
+//                 'pavadinimas' => 'kecupas',
+//                  'kiekis' => 2,
+//                  ],
+//             ],
+//             [
+//             'alko' =>
+//                 [
+//                  'pavadinimas' => 'degtine',
+//                 'kiekis' => 2,
+//                 ],
+//             ],
+// ];
 
-var_dump($produktai_lentynoje);
+// var_dump($produktai_lentynoje);
 
 "<br><br><br>";
 //teisingai
@@ -239,3 +239,61 @@ $products2 = [
 var_dump($products2);
 
 "<br><br><br>";
+//neteisingai
+$takeliai = [
+    [
+        'track_number' => 1,
+        'status' => 'open',
+        'tidiness' => 'clean',
+        'max_kegs' => 10,
+        'kegs_shot_on_track' => 5,
+        'kegs_standing' => 
+        [
+            'position-1' => true,
+            'position-2' => false,
+            'position-3' => false,
+            'position-4' => true,
+            'position-5' => false,
+            'position-6' => false,
+            'position-7' => true,
+            'position-8' => false,
+            'position-9' => true,
+            'position-10' => true,
+        ],
+    ],
+    [
+        'track_number' => 2,
+        'status' => 'closed',
+        'tidiness' => 'filthy',
+        'max_kegs' => 10,
+        'kegs_shot' => false,
+        'kegs_standing' => false,
+    ],
+];
+
+var_dump($takeliai);
+
+"<br><br><br>";
+//teisingai
+
+$bowling = [
+    [
+        'enabled' => true,
+        'pins' => [
+            [1, 0, 0, 1],
+            [0, 0, 1],
+            [0, 1],
+            [1],
+        ]
+    ],
+    [
+        'enabled' => false,
+        'pins' => [
+            [0, 0, 0, 0],
+            [0, 0, 0],
+            [0, 0],
+            [0],
+        ]
+    ]
+];
+var_dump($bowling);
