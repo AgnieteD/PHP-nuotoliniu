@@ -140,3 +140,102 @@ $players = [
 var_dump($players);
 
 "<br><br><br>";
+//neteisingai
+$produktai_lentynoje = [
+    'lentynos' => 
+        1 => 
+            [
+            'gyvuniniai' => 
+                 [
+                     'pavadinimas' => 'kiausai',
+                     'kiekis' => 3,
+                 ],
+                 [
+                    'pavadinimas' => 'zuvis',
+                    'kiekis' => 0,
+                ],
+            ],
+            [ 
+            'pieno_produktai' => 
+                [
+                    'pavadinimas' => 'grietine',
+                    'kiekis' => 1,
+                ],
+                [
+                    'pavadinimas' => 'jogurtas',
+                    'kiekis' => 2,
+                ], 
+            ],           
+        2 => 
+            [
+            'pieno_produktai' => 
+                [
+                    'pavadinimas' => 'pienas',
+                    'kiekis' => 1,
+                ],
+                [
+                    'pavadinimas' => 'kefyras',
+                    'kiekis' => 0,
+                ],
+            ],
+            [
+            'padazai' =>
+                 [
+                'pavadinimas' => 'kecupas',
+                 'kiekis' => 2,
+                 ],
+            ],
+            [
+            'alko' =>
+                [
+                 'pavadinimas' => 'degtine',
+                'kiekis' => 2,
+                ],
+            ],
+];
+
+var_dump($produktai_lentynoje);
+
+"<br><br><br>";
+//teisingai
+$products2 = [
+    [
+        [
+            'name' => 'Kiaušiniai',
+            'qty' => 3,
+        ],
+        [
+            'name' => 'Grietinė',
+            'qty' => 1,
+        ],
+        [
+            'name' => 'Jogurtas',
+            'qty' => 2,
+        ],
+        [
+            'name' => 'Žuvis',
+            'qty' => 0,
+        ],
+    ],
+    [
+        [
+            'name' => 'Pienas',
+            'qty' => 1,
+        ],
+        [
+            'name' => 'Kefyras',
+            'qty' => 0,
+        ],
+        [
+            'name' => 'Degtinė',
+            'qty' => 2,
+        ],
+        [
+            'name' => 'Kečupas',
+            'qty' => 2,
+        ],
+    ],
+];
+var_dump($products2);
+
+"<br><br><br>";
