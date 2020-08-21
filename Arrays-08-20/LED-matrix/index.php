@@ -1,17 +1,21 @@
 <?php
-define('GREEN', 0);  
-define('YELLOW', 1);    
-define('RED', 2);
+define('G', 0);  
+define('Y', 1);    
+define('R', 2);
 
 $matrix = [
-    [GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN],
-    [GREEN, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, GREEN],
-    [GREEN, YELLOW, RED, RED, RED, RED, YELLOW, GREEN],
-    [GREEN, YELLOW, RED, YELLOW, YELLOW, RED, YELLOW, GREEN],
-    [GREEN, YELLOW, RED, YELLOW, YELLOW, RED, YELLOW, GREEN],
-    [GREEN, YELLOW, RED, RED, RED, RED, YELLOW, GREEN],
-    [GREEN, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, GREEN],
-    [GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN],
+    [G, G, G, G, G, G, G, G],
+    [G, Y, Y, Y, Y, Y, Y, G],
+    [G, Y, R, R, R, R, Y, G],
+    [G, Y, R, Y, Y, R, Y, G],
+    [G, Y, R, Y, Y, R, Y, G],
+    [G, Y, R, R, R, R, Y, G],
+    [G, Y, Y, Y, Y, Y, Y, G],
+    [G, G, G, G, G, G, G, G],
 ];
 
  var_dump($matrix);
+
+
+
+
