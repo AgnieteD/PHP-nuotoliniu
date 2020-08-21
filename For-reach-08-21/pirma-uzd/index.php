@@ -45,38 +45,29 @@ $game = [
 
     .car {
         background: url(https://toppng.com/public/uploads/thumbnail/gta-v-car-11550712414czhnj9a4pm.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 20vh;
         width: 20%;
-        position: absolute;
     }
 
     .ball {
         background: url(https://i0.wp.com/freepngimages.com/wp-content/uploads/2018/06/football-no-background.png?fit=895%2C895);
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 10vh;
         width: 5%;
-        position: absolute;
     }
 
     .cat {
         background: url(https://i0.wp.com/freepngimages.com/wp-content/uploads/2018/06/football-no-background.png?fit=895%2C895);
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 10vh;
         width: 5%;
-        position: absolute;
     }
 
     .dog {
         background: url(https://i0.wp.com/freepngimages.com/wp-content/uploads/2018/06/football-no-background.png?fit=895%2C895);
+        width: 5%;
+    }
+
+    .object {
+        position: absolute;
         background-size: contain;
         background-repeat: no-repeat;
         height: 10vh;
-        width: 5%;
-        position: absolute;
     }
 
 </style>
@@ -85,7 +76,7 @@ $game = [
 <section class="street">
 <?php foreach ($game['objects'] as $object): ?>
     <div style="left:<?php print $object['x']; ?>px; top:<?php print $object['y']; ?>px;"
-         class="<?php print $object['class']; ?>"></div>
+         class="<?php print $object['class']; ?> object"></div>
          <?php endforeach; ?>
 </section>
  
