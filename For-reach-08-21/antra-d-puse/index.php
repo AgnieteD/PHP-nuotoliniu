@@ -154,6 +154,9 @@ foreach ($books as $book) {
 <hr />
 <hr />
 
+<?php
+function printBooks($books, $title) {
+?>
 <table class="table table--book">
     <thead>
         <tr>
@@ -174,7 +177,10 @@ foreach ($books as $book) {
         <?php endforeach; ?>
     </tbody>
 </table>
-
+<?php
+}
+printBooks($books, 'All Books');
+?>
 
 <hr />
 <hr />
@@ -195,7 +201,65 @@ $yearAvg = $sum / count($books);
 <hr />
 
 
-
-
 <!-- 29. Išrikiuoti masyvą pagal metus; -->
-<!-- 30. Išrikiuoti masyvą pagal pavadinimus -->
+
+<?php
+/**
+ * Lygina kolekcijoje esancius elementus. Funkcija skirta rykiavimo algoritmams.
+ *
+ * @param Array $currentBook Tai einamasis elementas, kuris yra lyginamas
+ * @param Array $nextBook Tai sekantis (vienu indexu didesnis) elementas
+ * @return 1 - Jeigu $currentBook metai yra didesni nei nextBook metai 
+ *        -1 - Jeigu $currentBook metai yra mazesni nei nextBook metai 
+ *         0 - Jeigu $currentBook metai yra lygus nextBook metams
+ */
+function byYear($currentBook, $nextBook) {
+    return $currentBook['year'] - $nextBook['year'];
+}
+
+$booksSortedByYear = $books;
+usort($booksSortedByYear, 'byYear');
+printBooks($booksSortedByYear, 'Knygos isrykiuotos pagal metus.');
+?>
+
+<hr />
+<hr />
+
+<!-- 30. Išrikiuoti masyvą pagal pavadinimus; -->
+
+<?php
+function byTitle($currentTitle, $nextTitle){
+    return strcmp($currentTitle['title'], $nextTitle['title']);
+}
+$bookSortedByTitle = $books;
+usort($bookSortedByTitle, 'byTitle');
+printBooks($bookSortedByTitle,'Knygos isrikiuotos pagal pavadinima');
+?>
+
+<hr />
+<hr />
+
+<!-- pagal autoriu -->
+
+<?php
+function byAuthor($currentBook, $nextBook){
+    return strcmp($currentBook['author'], $nextBook['author']);
+}
+$bookSortedByAuthor = $books;
+usort($bookSortedByAuthor, 'byAuthor');
+printBooks($bookSortedByAuthor,'Knygos isrikiuotos pagal autoriu');
+?>
+
+<hr />
+<hr />
+
+<!-- pagal turimu kategoriju kieki -->
+
+<?php
+function byGenre($currentBook, $nextBook){
+    return count($currentBook['genre']) - count($nextBook['genre']);
+}
+$bookSortedByBook = $books;
+usort($bookSortedByBook, 'byGenre');
+printBooks($bookSortedByBook,'Knygos isrikiuotos pagal genre');
+?>

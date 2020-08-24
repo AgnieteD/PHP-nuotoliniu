@@ -2,30 +2,28 @@
 $game = [
     'objects' => [
         [
-            'x' => 300,
-            'y' => 400,
+            'x' => 19,
+            'y' => 25,
             'class' => 'car',
         ],
         [
-            'x' => 500,
-            'y' => 350,
+            'x' => 31,
+            'y' => 21,
             'class' => 'ball',
         ],
         [
-            'x' => 200,
-            'y' => 450,
+            'x' => 12,
+            'y' => 28,
             'class' => 'cat',
         ],
         [
-            'x' => 600,
-            'y' => 500,
+            'x' => 37,
+            'y' => 31,
             'class' => 'dog',
         ],
     ],
 ];
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,8 +73,8 @@ $game = [
 <body>
 <section class="street">
 <?php foreach ($game['objects'] as $object): ?>
-    <div style="left:<?php print $object['x']; ?>px; top:<?php print $object['y']; ?>px;"
-         class="<?php print $object['class']; ?> object"></div>
+    <div style="left:<?php print $object['x']; ?>em; top:<?php print $object['y']; ?>em;"
+         class="object <?php print $object['class']; ?>"></div>
          <?php endforeach; ?>
 </section>
  
