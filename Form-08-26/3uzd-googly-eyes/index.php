@@ -12,12 +12,12 @@ $message = empty($_POST) ? 'Paspausk mygtuką' : $skaicius;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Googly Eyes</title>
 </head>
 
 <body>
     <form method="POST">
-        Dydis: <input name="slider" type="range" min="0" max="50">
+        Dydis: <input name="slider" type="range" min="0" max="50" value="<?= $skaicius?>">
         <button name="submit">Let's do it</button>
     </form>
     <p><?= $message; ?></p>

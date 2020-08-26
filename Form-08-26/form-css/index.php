@@ -97,7 +97,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         <label for="password">Slaptažodis</label>
         <input type="password" id="password" name="password">
     </div>
-    <button type="submit">Prisijungti</button>
+    <button name="submit">Prisijungti</button>
 </form>
 
 
