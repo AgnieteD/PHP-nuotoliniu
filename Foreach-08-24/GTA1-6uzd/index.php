@@ -1,6 +1,14 @@
 <?php
 
 $game = [
+    'player' => [
+        'health' => rand(1, 100),
+        'armor' => rand(1, 100),
+        'weapon' => rand(1, 3),
+        'wanted_level' => 0,
+        'money' => 1000,
+    ],
+    'game' => ['time' => date("h:i")],
     'objects' => [
         [
             'x' => 50,
@@ -23,17 +31,9 @@ $game = [
             'class' => 'dog',
         ],
     ],
-    'huds' => [
-        [
-            'x' => 0,
-            'y' => 0,
-            'class' => 'huds',
-            'time' => date("h:i"),
-            'bar_1' => rand(1, 100),
-            'bar_2' => rand(1, 100),
-            'weapon' => rand(1, 3),
-        ],
-    ]
+    'hud' => [
+        'money' => '',
+    ],
 ];
 
 foreach ($game['objects'] as $key => $object) {
@@ -54,11 +54,15 @@ foreach ($game['objects'] as $key => $object) {
     //      var_dump($object['on_fire'] ? 'fire' : 'target');
     $game['objects'][$key] = $object;
 
-    $money = 1000 + 200 * ($object['on_fire'] ? count($object) : 1);
-    $game['huds'][0]['money'] = '000' . $money;
+    $game['player']['money'] += $object['on_fire'] ? 200 : 0;
+
+    $game['player']['wanted_level'] += $object['on_fire'] ? 1 : 0;
+
 }
+$game['hud']['money'] = str_pad($game['player']['money'], 8, '0', STR_PAD_LEFT);
 
 //  var_dump($game);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -136,6 +140,7 @@ foreach ($game['objects'] as $key => $object) {
         .hud {
             display: flex;
             margin-bottom: 10px;
+            box-sizing: border-box;
         }
 
         /* ​ .img {
@@ -145,6 +150,7 @@ foreach ($game['objects'] as $key => $object) {
 
         .right {
             box-sizing: border-box;
+            width: 100%;
         }
 
         .bar {
@@ -170,26 +176,24 @@ foreach ($game['objects'] as $key => $object) {
         <?php endforeach; ?>
 
         <div class="huds">
-            <?php foreach ($game['huds'] as $hud) : ?>
                 <div class="hud">
-                    <img style="width: 3em; height: 3em; margin-right: 10px;" src="<?php print $hud['weapon']; ?>.png" alt="weapon">
+                    <img style="width: 2.5em; height: 2.5em; margin-right: 10px;" src=".png" alt="weapon">
                     <div class="right">
-                        <span><?php print $hud['time']; ?></span>
+                        <span>time</span>
                         <div class="bar">
-                            <div style="background-color: white; height:20px;width:<?php print $hud['bar_1']; ?>%"></div>
+                            <div style="background-color: white; height:20px;width:%"></div>
                         </div>
                     </div>
                 </div>
                 <div class="bar">
-                    <div style="background-color: red; height:20px;width:<?php print $hud['bar_2']; ?>%"></div>
+                    <div style="background-color: red; height:20px;width:%"></div>
                 </div>
-                <span>$<?php print $hud['money']; ?></span>
+                <span><?php print $game['hud']['money']; ?></span>
                 <div>
-                    <?php foreach ($game['objects'] as $object) :
-                        if ($object['on_fire'] ? print '<i class="far fa-star"></i>' : print '<i class="fas fa-star"></i>'); ?>
-                    <?php endforeach; ?>
+                    <?php for ($i=1; $i <= 6; $i++) : ?>  
+                        <i class="<?php print $game['player']['wanted_level'] < $i ? 'far' : 'fas' ?> fa-star"></i> 
+                    <?php endfor; ?>
                 </div>
-            <?php endforeach; ?>
         </div>
     </div>
 </body>
