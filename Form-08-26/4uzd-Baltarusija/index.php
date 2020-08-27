@@ -11,6 +11,8 @@ if (isset($_POST['lopas'])) {
     $checked = 'Agresyvus bičas';
 } elseif (isset($_POST['uber'])) {
     $checked = 'Uber saviakas';
+} else {
+    $checked = 'Amerikonų šnipas';
 }
 
 var_dump($_POST);
@@ -68,13 +70,13 @@ var_dump($_POST);
                 </div>
             </div>
             <div>
-                <label for="lopas">Ar mėgsti bananus?
+                <label>Ar mėgsti bananus?
                     <input type="checkbox" name="lopas">
                 </label>
-                <label for="agresyvus">Ar susikištum bananą, jei lieptų Putinas?
+                <label>Ar susikištum bananą, jei lieptų Putinas?
                     <input type="checkbox" name="agresyvus">
                 </label>
-                <label for="uber">Ar suvalgytum Putino bananą, jei lieptų Lukašenka?
+                <label>Ar suvalgytum Putino bananą, jei lieptų Lukašenka?
                     <input type="checkbox" name="uber">
                 </label>
             </div>
