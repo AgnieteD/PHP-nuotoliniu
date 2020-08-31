@@ -166,7 +166,7 @@ $cars = [
         'brand' => 'BMW',
         'model' => 'X5',
         'year' => 2015,
-        'price' => 30000,
+        'price' => 35000,
     ],
     [
         'brand' => 'Audi',
@@ -208,7 +208,13 @@ $cars = [
         'brand' => 'BMW',
         'model' => 'X5',
         'year' => 2015,
-        'price' => 30000,
+        'price' => 50000,
+    ],
+    [
+        'brand' => 'BMW',
+        'model' => 'X5',
+        'year' => 2015,
+        'price' => 20000,
     ],
 ];
 ?>
@@ -216,27 +222,32 @@ $cars = [
 
 <!--   8. Sukurti funkciją kuri spausdina visas mašinas. -->
 <style>
-.cars-table__title{
-  background: #333;
-  color: #fff;
-  text-align: center;
-}
-.cars-table__header{
-  background: #333;
-  color: #fff;
-}
-.row{
-  display: flex;
-}
-.row > .col {
-  width: 25%;
-}
-.p-1{
-  padding: 1rem;
-}
-.cars-table__body > .row:nth-of-type(2n){
-  background: #fafafa;
-}
+    .cars-table__title {
+        background: #333;
+        color: #fff;
+        text-align: center;
+    }
+
+    .cars-table__header {
+        background: #333;
+        color: #fff;
+    }
+
+    .row {
+        display: flex;
+    }
+
+    .row>.col {
+        width: 25%;
+    }
+
+    .p-1 {
+        padding: 1rem;
+    }
+
+    .cars-table__body>.row:nth-of-type(2n) {
+        background: #fafafa;
+    }
 </style>
 
 
@@ -278,9 +289,9 @@ function carsByBrand($cars, $brand)
 {
     $filteredCars = [];
     foreach ($cars as $car) {
-       if ($car['brand'] === $brand) {
+        if ($car['brand'] === $brand) {
             $filteredCars[] = $car;
-       }; 
+        };
     };
     return $filteredCars;
 }
@@ -290,23 +301,227 @@ $carsMBW = carsByBrand($cars, 'BMW');
 printCarsTable($carsMBW, 'Atrūšiuotos BMW mašinos');
 ?>
 
-
-
-
+<hr />
+<hr />
 
 <!--   
-    10. Sukurti funkciją kuri atrenka mašinas brangesnes, nei parametru paduodama reikšmė.
+    10. Sukurti funkciją kuri atrenka mašinas brangesnes, 
+    nei parametru paduodama reikšmė.
   Atvaizduoti mašinas lentele panaudojant funkciją, sukurtą 8 punkte.
  -->
+
+<?php
+
+function filterCarsPriceFrom($cars, $price)
+{
+    $filteredCars = [];
+    foreach ($cars as $car) {
+        if ($car['price'] >= $price) {
+            $filteredCars[] = $car;
+        }
+    }
+    return $filteredCars;
+}
+
+$carsFromPrice30k = filterCarsPriceFrom($cars, 30000);
+$carsFromPrice6k = filterCarsPriceFrom($cars, 6000);
+
+printCarsTable($carsFromPrice30k, 'Auto nuo 30k');
+printCarsTable($carsFromPrice6k, 'Auto nuo 6k');
+
+?>
+
+<hr />
+<hr />
+<hr />
+<hr />
+
 <!--   
     11. Sukurti funkciją kuri atrenka mašinas pigesnes, nei parametru paduodama reikšmė.
   Atvaizduoti mašinas lentele panaudojant funkciją, sukurtą 8 punkte.
  -->
+<?php
+
+function filterCheaperCars($cars, $price)
+{
+    $filteredCars = [];
+    foreach ($cars as $car) {
+        if ($car['price'] < $price) {
+            $filteredCars[] = $car;
+        }
+    }
+    return $filteredCars;
+}
+
+$carsLowerThan50k = filterCheaperCars($cars, 50000);
+$carsLowerThan10k = filterCheaperCars($cars, 10000);
+
+printCarsTable($carsLowerThan50k, 'Auto pigiau nei 50k');
+printCarsTable($carsLowerThan10k, 'Auto pigiau nei 10k');
+?>
+
+<hr />
+<hr />
+<hr />
+<hr />
+
 <!--   
     12. Sukurti funkciją kuri išrikiuoja mašinas pagal kainą.
   Atvaizduoti mašinas lentele panaudojant funkciją, sukurtą 8 punkte.
  -->
+ <?php
+function byPriceASC($curr, $next)
+{
+  return $curr['price'] - $next['price'];
+}
+function byPriceDESC($curr, $next)
+{
+  return $next['price'] - $curr['price'];
+}
+function sortCarsByPrice($cars)
+{
+  usort($cars, 'byPriceASC');
+  return $cars;
+}
+$carsSortedByPriceASC = sortCarsByPrice($cars);
+printCarsTable($carsSortedByPriceASC, 'Mašinos išrikiuotas pagal kainą didėjimo tvarka');
+?>
+​
 <!--   
     13. Sukurti funkciją kuri išrikiuoja mašinas pagal parametru paduotą funkciją.
   Atvaizduoti mašinas lentele panaudojant funkciją, sukurtą 8 punkte.
  -->
+<?php
+function byYearASC($curr, $next)
+{
+  return $curr['year'] - $next['year'];
+}
+function byYearDESC($curr, $next)
+{
+  return $next['year'] - $curr['year'];
+}
+function byBrandASC($curr, $next)
+{
+  return strcmp($curr['brand'], $next['brand']);
+}
+function byBrandDESC($curr, $next)
+{
+  return strcmp($curr['brand'], $next['brand']) * -1;
+}
+function byModelASC($curr, $next)
+{
+  return strcmp($curr['model'], $next['model']);
+}
+function byModelDESC($curr, $next)
+{
+  return strcmp($curr['model'], $next['model']) * -1;
+}
+function sortCars($cars, $cmpFunction){
+  usort($cars, $cmpFunction);
+  return $cars;
+}
+$carsSortedByYearASC = sortCars($cars, 'byYearASC');
+$carsSortedByYearDESC = sortCars($cars, 'byYearDESC');
+printCarsTable($carsSortedByYearASC, 'Mašinos išrikiuotos pagal metus didėjimo tvarka');
+printCarsTable($carsSortedByYearDESC, 'Mašinos išrikiuotos pagal metus mažėjimo tvarka');
+?>
+​
+<!--   
+    14. Sukurti funkciją kuri atrenka mašinas pagal parametru paduotą funkciją.
+  Parašyti panaudojimo pavyzdžių ir atspausdinti mašinas lentele panaudojant funkciją, sukurtą 8 punkte.
+ -->
+​
+ <?php
+function priceFrom($el, $minPrice)
+{
+    return $el['price'] >= $minPrice;
+}
+function priceTo($el, $maxPrice)
+{
+    return $el['price'] <= $maxPrice;
+}
+function priceBetween($el, $from, $to)
+{
+    return $el['price'] >= $from && $el['price'] <= $to;
+}
+function yearFrom($el, $minYear)
+{
+    return $el['year'] >= $minYear;
+}
+function yearTo($el, $maxYear)
+{
+    return $el['year'] >= $maxYear;
+}
+function brandEqual($el, $brand)
+{
+    return $el['brand'] === $brand;
+}
+function modelEqual($el, $model)
+{
+    return $el['model'] === $model;
+}
+/**
+ * Atrenka auto naudojant filtravimo funkcija
+ * 
+ * @param Array $cars auto masyvas.
+ * @param Function $filterFunction filtravimo funkcija, kuri grazina true ar false.
+ * @param Array $args filtravimo funkcijai perduodami papildomi (šalia tikrinamojo elemento) parametrai.
+ * @return Array auto atrinktos pagal filtravimo funkcija.
+ * 
+*/
+function filterCars($cars, $filterFunction, $args)
+{
+    $filteredCars = [];
+    foreach ($cars as $car) {
+        if ($filterFunction($car, ...$args)) {
+            $filteredCars[] = $car;
+        }
+    }
+    return $filteredCars;
+}
+$filteredCars = filterCars($cars, 'priceFrom', [5000]);
+printCarsTable($filteredCars, 'Auto nuo 5k');
+$filteredCars = filterCars($cars, 'priceBetween', [8000, 20000]);
+printCarsTable($filteredCars, 'Auto nuo 8k iki 20k');
+?>
+
+<!-- ---------------------------------- KOMPLEKSINĖS UŽDUOTYS ---------------------------------------- -->
+<!-- 1. Atrinkti BMW automobilius brangesnius nei 30 000 ir išrikiuokite 
+pagal kainą mažėjančia tvarka -->
+ ​
+<?php
+
+$filteredCars = filterCars($cars, 'brandEqual', ['BMW']);
+$filteredCars = filterCars($filteredCars, 'priceFrom', [30000]);
+$filteredCars = sortCars($filteredCars, 'byPriceDESC');
+
+printCarsTable($filteredCars, 'BMW nuo 30k mazejancia tvarka');
+
+?>
+
+
+<!--   
+    2. Atrinkti Toyota automobilius pigesnius nei 10 000 ir iškikiuokite pagal markę tvarka
+ -->
+​
+<!--   
+    3. Atrinkti Audi automobilius naujesnius nei 2010 metai, rėžiuose [10000; 50000], išrikiuoti pagal metus didėjančia tvarka
+ -->
+​
+<!--   
+    4. Parašyti funkciją kuri palygina du mašinų masyvus, pagal suminę mašinų kainą
+      grąžinti true - jei pirmojo masyvo kainų suma didenė už antrojo,
+      grąžinti false - mei antrojo masyvo kainų suma NEdidenė už antrojo
+​
+      Atspausdinti ekrane "Pirmojo masyvo mašinų kainų suma yra didesnė" 
+        arba  "Antrojo masyvo mašinų kainų suma NĖRA didesnė"
+ -->
+​
+<!--   
+    5. Parašyti funkciją kuri palygina du mašinų masyvus, pagal vidutinę mašinų kainą
+      grąžinti true - jei pirmojo masyvo kainų vidurkis didesnis už antrojo,
+      grąžinti false - jei masyvo kainų vidurkis NĖRA didenis už antrojo
+​
+      Atspausdinti ekrane "Pirmojo masyvo mašinų kainų vidurkis yra didesnis" 
+        arba "Pirmojo masyvo mašinų kainų vidurkis NĖRA didesnis"
+-->
