@@ -99,11 +99,11 @@ function button_attr(string $button_id, array $button): string
 // function sanitize_post(array $field_keys): array
 // {
 //     $filter_params = [];
-    
+
 //     foreach ($field_keys as $field_key) {
 //         $filter_params[$field_key] = FILTER_SANITIZE_SPECIAL_CHARS;
 //     }
-    
+
 //     return filter_input_array(INPUT_POST, $filter_params);
 // }
 
@@ -117,11 +117,66 @@ function sanitize_form_input_values(array $fields): array
 {
     $filter_params = [];
 
-    foreach ($fields['fields'] as $field_key => $field) 
-    {
+    foreach ($fields['fields'] as $field_key => $field) {
         $filter_params[$field_key] = $field['filter'] ?? FILTER_SANITIZE_SPECIAL_CHARS;
         // var_dump($field_value);
     }
 
     return filter_input_array(INPUT_POST, $filter_params);
 }
+
+
+function validate_field_not_empty($field_value, &$field)
+{
+    if ($field_value === '') {
+        $field['error'] = 'Laukelis tuscias';
+    } else {
+        return true;
+    }
+}
+
+function validate_field_is_number($field_value, &$field)
+{
+    if (!is_int($field_value)) {
+        $field['error'] = 'Laukelio vertė privalo būti skaičius';
+    } else {
+        return true;
+    }
+}
+
+
+function validate_form(&$form, $form_values)
+{
+    $success = true;
+    foreach ($form['fields'] as $field_key => &$field) {
+        $field_value = $form_values[$field_key];
+        foreach ($field['validators'] as $validator) {
+            if (is_callable($validator)) {
+                if ($validator($field_value, $field)) {
+                    $field['value'] = $field_value;
+                }
+            } else {
+                $success = false;
+                break;
+            }
+            //  var_dump($validator);
+        }
+    }
+    return $success;
+}
+
+
+ // if (isset($field['validators']) && in_array('validate_field_not_empty', $field['validators'])) {
+        //     if (validate_field_not_empty($field_value, $field)) {
+        //         $field['value'] = $field_value;
+        //     } else {
+        //         $success = false;
+        //     }
+        // }
+        // if (isset($field['validators']) && in_array('validate_field_is_number', $field['validators'])) {
+        //     if (validate_field_is_number($field_value, $field)) {
+        //         $field['value'] = $field_value;
+        //     } else {
+        //         $success = false;
+        //     }
+        // }

@@ -14,8 +14,11 @@ $form = [
         'name' => [
             'label' => 'Name',
             'type' => 'text',
-            'filter' => FILTER_SANITIZE_ENCODED,
+            'filter' => FILTER_SANITIZE_ENCODED,            
             // 'value' => 'name',
+            'validators' => [
+                'validate_field_not_empty',
+            ],
             'extra' =>
             [
                 'attr' =>
@@ -29,6 +32,9 @@ $form = [
             'label' => 'Surname',
             'type' => 'text',
             // 'value' => 'name',
+            'validators' => [
+                'validate_field_not_empty',
+            ],
             'extra' =>
             [
                 'attr' =>
@@ -55,6 +61,9 @@ $form = [
             'label' => 'Phone',
             'type' => 'tel',
             // 'value' => 'phone',
+            'validators' => [
+                'validate_field_is_number',
+            ],
             'extra' =>
             [
                 'attr' =>
@@ -107,9 +116,13 @@ $form = [
 
 // $fields = ['vardas', 'pavarde', 'kazkas'];
 
-if (!empty($_POST)) $input = sanitize_form_input_values($form);
+if (!empty($_POST)) {
+    $form_values = sanitize_form_input_values($form);
+    $success = validate_form($form, $form_values);
 
-// var_dump($input);
+    // var_dump($success);
+} 
+
 
 ?>
 
@@ -122,7 +135,11 @@ if (!empty($_POST)) $input = sanitize_form_input_values($form);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Form from array</title>
 </head>
-
+<style>
+    .error {
+        color: red;    
+    }
+</style>
 <body>
     <?php include '../core/templates/form.tpl.php'; ?>
     <!-- <form method="POST">
@@ -131,8 +148,9 @@ if (!empty($_POST)) $input = sanitize_form_input_values($form);
         <input name="kazkas" type="text">
         <button>Submit</button>
     </form> -->
-    <p><?php print $input['name'] ?? 'Neivesta'; ?></p>
-    <p><?php print $input['surname'] ?? 'Neivesta'; ?></p>
+    <p><?php print $form_values['name'] ?? 'Neivesta'; ?></p>
+    <p><?php print $form_values['surname'] ?? 'Neivesta'; ?></p>
+    <p><?php print $form_values['phone'] ?? 'Neivesta'; ?></p>
 </body>
 
 </html>

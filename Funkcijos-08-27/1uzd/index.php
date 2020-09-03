@@ -176,9 +176,21 @@ $cars = [
     ],
     [
         'brand' => 'Banana',
-        'model' => 'Yellow',
+        'model' => 'Yellow1',
         'year' => 2000,
         'price' => 10000,
+    ],
+    [
+        'brand' => 'Banana',
+        'model' => 'Yellow3',
+        'year' => 4000,
+        'price' => 4000,
+    ],
+    [
+        'brand' => 'Banana',
+        'model' => 'Yellow2',
+        'year' => 8000,
+        'price' => 8000,
     ],
     [
         'brand' => 'Honda',
@@ -215,6 +227,57 @@ $cars = [
         'model' => 'X5',
         'year' => 2015,
         'price' => 20000,
+    ],
+];
+
+$cars2 = [
+    [
+        'brand' => 'BMW',
+        'model' => 'X5',
+        'year' => 2015,
+        'price' => 35000,
+    ],
+    [
+        'brand' => 'Audi',
+        'model' => '100',
+        'year' => 1990,
+        'price' => 3000,
+    ],
+    [
+        'brand' => 'Banana',
+        'model' => 'Yellow1',
+        'year' => 2000,
+        'price' => 10000,
+    ],
+    [
+        'brand' => 'Banana',
+        'model' => 'Yellow3',
+        'year' => 4000,
+        'price' => 4000,
+    ],
+    [
+        'brand' => 'Banana',
+        'model' => 'Yellow2',
+        'year' => 8000,
+        'price' => 8000,
+    ],
+    [
+        'brand' => 'Honda',
+        'model' => 'Shmonda',
+        'year' => 1850,
+        'price' => 500,
+    ],
+    [
+        'brand' => 'Limonas',
+        'model' => 'LTD',
+        'year' => 2020,
+        'price' => 100000,
+    ],
+    [
+        'brand' => 'Balvonas',
+        'model' => '2Lol',
+        'year' => 1999,
+        'price' => 6000000,
     ],
 ];
 ?>
@@ -369,19 +432,19 @@ printCarsTable($carsLowerThan10k, 'Auto pigiau nei 10k');
     12. Sukurti funkciją kuri išrikiuoja mašinas pagal kainą.
   Atvaizduoti mašinas lentele panaudojant funkciją, sukurtą 8 punkte.
  -->
- <?php
+<?php
 function byPriceASC($curr, $next)
 {
-  return $curr['price'] - $next['price'];
+    return $curr['price'] - $next['price'];
 }
 function byPriceDESC($curr, $next)
 {
-  return $next['price'] - $curr['price'];
+    return $next['price'] - $curr['price'];
 }
 function sortCarsByPrice($cars)
 {
-  usort($cars, 'byPriceASC');
-  return $cars;
+    usort($cars, 'byPriceASC');
+    return $cars;
 }
 $carsSortedByPriceASC = sortCarsByPrice($cars);
 printCarsTable($carsSortedByPriceASC, 'Mašinos išrikiuotas pagal kainą didėjimo tvarka');
@@ -394,31 +457,32 @@ printCarsTable($carsSortedByPriceASC, 'Mašinos išrikiuotas pagal kainą didėj
 <?php
 function byYearASC($curr, $next)
 {
-  return $curr['year'] - $next['year'];
+    return $curr['year'] - $next['year'];
 }
 function byYearDESC($curr, $next)
 {
-  return $next['year'] - $curr['year'];
+    return $next['year'] - $curr['year'];
 }
 function byBrandASC($curr, $next)
 {
-  return strcmp($curr['brand'], $next['brand']);
+    return strcmp($curr['brand'], $next['brand']);
 }
 function byBrandDESC($curr, $next)
 {
-  return strcmp($curr['brand'], $next['brand']) * -1;
+    return strcmp($curr['brand'], $next['brand']) * -1;
 }
 function byModelASC($curr, $next)
 {
-  return strcmp($curr['model'], $next['model']);
+    return strcmp($curr['model'], $next['model']);
 }
 function byModelDESC($curr, $next)
 {
-  return strcmp($curr['model'], $next['model']) * -1;
+    return strcmp($curr['model'], $next['model']) * -1;
 }
-function sortCars($cars, $cmpFunction){
-  usort($cars, $cmpFunction);
-  return $cars;
+function sortCars($cars, $cmpFunction)
+{
+    usort($cars, $cmpFunction);
+    return $cars;
 }
 $carsSortedByYearASC = sortCars($cars, 'byYearASC');
 $carsSortedByYearDESC = sortCars($cars, 'byYearDESC');
@@ -426,12 +490,17 @@ printCarsTable($carsSortedByYearASC, 'Mašinos išrikiuotos pagal metus didėjim
 printCarsTable($carsSortedByYearDESC, 'Mašinos išrikiuotos pagal metus mažėjimo tvarka');
 ?>
 ​
+<hr />
+<hr />
+<hr />
+<hr />
+
 <!--   
     14. Sukurti funkciją kuri atrenka mašinas pagal parametru paduotą funkciją.
   Parašyti panaudojimo pavyzdžių ir atspausdinti mašinas lentele panaudojant funkciją, sukurtą 8 punkte.
  -->
 ​
- <?php
+<?php
 function priceFrom($el, $minPrice)
 {
     return $el['price'] >= $minPrice;
@@ -468,7 +537,7 @@ function modelEqual($el, $model)
  * @param Array $args filtravimo funkcijai perduodami papildomi (šalia tikrinamojo elemento) parametrai.
  * @return Array auto atrinktos pagal filtravimo funkcija.
  * 
-*/
+ */
 function filterCars($cars, $filterFunction, $args)
 {
     $filteredCars = [];
@@ -485,31 +554,75 @@ $filteredCars = filterCars($cars, 'priceBetween', [8000, 20000]);
 printCarsTable($filteredCars, 'Auto nuo 8k iki 20k');
 ?>
 
+
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+
 <!-- ---------------------------------- KOMPLEKSINĖS UŽDUOTYS ---------------------------------------- -->
 <!-- 1. Atrinkti BMW automobilius brangesnius nei 30 000 ir išrikiuokite 
 pagal kainą mažėjančia tvarka -->
- ​
+​
 <?php
 
 $filteredCars = filterCars($cars, 'brandEqual', ['BMW']);
 $filteredCars = filterCars($filteredCars, 'priceFrom', [30000]);
-$filteredCars = sortCars($filteredCars, 'byPriceDESC');
+$filteredCars = sortCars($filteredCars, 'byBrandASC');
 
 printCarsTable($filteredCars, 'BMW nuo 30k mazejancia tvarka');
 
 ?>
 
+<hr />
+<hr />
+<hr />
+<hr />
 
 <!--   
     2. Atrinkti Toyota automobilius pigesnius nei 10 000 ir iškikiuokite pagal markę tvarka
  -->
-​
+​<?php
+
+    $filteredCars = filterCars($cars, 'brandEqual', ['Banana']);
+    $filteredCars = filterCars($filteredCars, 'priceTo', [10000]);
+    $filteredCars = sortCars($filteredCars, 'byModelASC');
+
+    printCarsTable($filteredCars, 'Banana iki 10k didejancia tvarka');
+
+?>
+
+<hr />
+<hr />
+<hr />
+<hr />
+
 <!--   
     3. Atrinkti Audi automobilius naujesnius nei 2010 metai, rėžiuose [10000; 50000], išrikiuoti pagal metus didėjančia tvarka
  -->
 ​
+​<?php
+
+    $filteredCars = filterCars($cars, 'brandEqual', ['Audi']);
+    $filteredCars = filterCars($filteredCars, 'priceBetween', [10000, 50000]);
+    $filteredCars = sortCars($filteredCars, 'byYearASC');
+
+    printCarsTable($filteredCars, 'Audi naujesni nei 2010m');
+
+    ?>
+
+<hr />
+<hr />
+<hr />
+<hr />
+
 <!--   
-    4. Parašyti funkciją kuri palygina du mašinų masyvus, pagal suminę mašinų kainą
+    4. Parašyti funkciją kuri palygina du mašinų masyvus, pagal suminę mašinų 
+    kainą
       grąžinti true - jei pirmojo masyvo kainų suma didenė už antrojo,
       grąžinti false - mei antrojo masyvo kainų suma NEdidenė už antrojo
 ​
@@ -517,11 +630,65 @@ printCarsTable($filteredCars, 'BMW nuo 30k mazejancia tvarka');
         arba  "Antrojo masyvo mašinų kainų suma NĖRA didesnė"
  -->
 ​
+<?php
+
+function carsTotalPrice($cars)
+{
+    $totalPrice = 0;
+
+    foreach ($cars as $car) {
+        $totalPrice += $car['price'];
+    }
+
+    return $totalPrice;
+}
+
+function compareCarsByTotalPrice($cars, $cars2)
+{
+    return carsTotalPrice($cars) > carsTotalPrice($cars2);
+}
+
+?>
+
+<h3>
+    <?= compareCarsByTotalPrice($cars, $cars2)
+        ? 'Pirmojo masyvo mašinų kainų suma yra didesnė'
+        : 'Antrojo masyvo mašinų kainų suma YRA didesnė'; ?>
+</h3>
+
+<hr />
+<hr />
+<hr />
+<hr />
+
 <!--   
-    5. Parašyti funkciją kuri palygina du mašinų masyvus, pagal vidutinę mašinų kainą
+    5. Parašyti funkciją kuri palygina du mašinų masyvus, pagal vidutinę mašinų 
+    kainą
       grąžinti true - jei pirmojo masyvo kainų vidurkis didesnis už antrojo,
       grąžinti false - jei masyvo kainų vidurkis NĖRA didenis už antrojo
 ​
       Atspausdinti ekrane "Pirmojo masyvo mašinų kainų vidurkis yra didesnis" 
         arba "Pirmojo masyvo mašinų kainų vidurkis NĖRA didesnis"
 -->
+<?php
+
+function carsMediumPrice($cars){
+    $totalPrice = 0;
+    foreach($cars as $car)
+    {
+        $totalPrice += $car['price'];
+    }
+    return $totalPrice / count($cars);
+};
+
+function compareCarsByMediumPrice($cars, $cars2)
+{
+    return carsMediumPrice($cars) > carsMediumPrice($cars2);
+};
+
+?>
+<h3>
+    <?= compareCarsByMediumPrice($cars, $cars2)
+        ? 'Pirmojo masyvo mašinų kainų vidurkis yra didesnė'
+        : 'Antrojo masyvo mašinų kainų vidurkis NĖRA didesnė' ?>
+</h3>
