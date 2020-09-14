@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Rikis",
+        "hunger_lvl": 60,
+        "fatigue": 15,
+        "strength": 50
+    },
+    {
+        "name": "Shmikis",
+        "hunger_lvl": 82,
+        "fatigue": 20,
+        "strength": 20
+    }
+]
